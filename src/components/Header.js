@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import bootstrap from 'bootstrap'
 
 import doggoLogo from '../assets/doggoLogo.png';
+import searchIcon from '../assets/search-icon.svg';
 
 
 export default function MenuLayout() {
@@ -44,6 +44,25 @@ const OptionsHeader = styled.div`
     background-color: #fef7e1;
     border-radius: 8px;
     border: 1px solid #000028;
+    min-width: 10rem;
+    font-weight: bold;
+  }
+`
+
+const SearchHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  .search-header-icon {
+    margin: auto 10px;
+  }
+  .search-header-input {
+    margin: auto 10px;
+    .input-search-bar {
+      border-radius: 10px;
+      border: 1px solid #000028;
+      height: 20px;
+      padding-left: 10px;
+    }
   }
 `
 
@@ -56,17 +75,18 @@ const OptionsHeader = styled.div`
         </MenuIcon>
         
         <OptionsHeader>
-          <button onClick={() => handlePageChange('pagina1')}>Página 1</button>
-          <button onClick={() => handlePageChange('pagina2')}>Página 2</button>
-          <button onClick={() => handlePageChange('pagina3')}>Página 3</button>
+          <button onClick={() => handlePageChange('pagina1')}>Home</button>
+          <button onClick={() => handlePageChange('pagina2')}>Statistic</button>
+          <button onClick={() => handlePageChange('pagina3')}>About</button>
         </OptionsHeader>
-        <div className="menu-search">
-          <div className="search-icon">
-            {/* Inserir o código para o ícone */}
-            <img src="caminho_do_icone.png" alt="Ícone" />
+        <SearchHeader>
+          <div className='search-header-icon'>
+            <img src={searchIcon} style={{height: '20px', width: '20px', marginTop: '5px', marginBottom: 'auto', marginRight: '-10px'}} alt="Ícone" />
           </div>
-          <input type="text" placeholder="Pesquisar..." />
-        </div>
+          <div className='search-header-input'>
+            <input type="text" placeholder="Pesquisar..." className='input-search-bar' />
+          </div>
+        </SearchHeader>
       </HeaderContainer>
     </div>
   );
