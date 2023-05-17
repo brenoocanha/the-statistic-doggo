@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import doggoLogo from '../assets/doggoLogo.png';
-import searchIcon from '../assets/search-icon.svg';
 import { Link } from 'react-router-dom';
 
 
@@ -18,6 +17,20 @@ export default function MenuLayout() {
     font-size: 16px;
     font-family: 'Batangas';
     color: #fe502d;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px 25px;
+  margin: auto 20px;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -48,23 +61,6 @@ const OptionsHeader = styled.div`
   }
 `
 
-const SearchHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  .search-header-icon {
-    margin: auto 10px;
-  }
-  .search-header-input {
-    margin: auto 10px;
-    .input-search-bar {
-      border-radius: 10px;
-      border: 1px solid #000028;
-      height: 20px;
-      padding-left: 10px;
-    }
-  }
-`
-
   return (
     <div className='container-fluid'>
       <HeaderContainer className="header-container">
@@ -74,18 +70,10 @@ const SearchHeader = styled.div`
         </MenuIcon>
         
         <OptionsHeader>
-          <button><Link to="/">Home</Link></button>
-          <button><Link to="/statistic">Statistic</Link></button>
-          <button><Link to="/about">About</Link></button>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/statistic">Statistic</StyledLink>
+          <StyledLink to="/about">About</StyledLink>
         </OptionsHeader>
-        <SearchHeader>
-          <div className='search-header-icon'>
-            <img src={searchIcon} style={{height: '20px', width: '20px', marginTop: '5px', marginBottom: 'auto', marginRight: '-10px'}} alt="Ícone" />
-          </div>
-          <div className='search-header-input'>
-            <input type="text" placeholder="Pesquisar..." className='input-search-bar' />
-          </div>
-        </SearchHeader>
       </HeaderContainer>
     </div>
   );
