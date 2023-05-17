@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Batangas';
+  src: url('./fonts/BatangasBold700.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('./fonts/DMSansBold.ttf') format('opentype');
+}
+

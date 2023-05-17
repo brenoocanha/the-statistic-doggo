@@ -3,20 +3,21 @@ import styled from 'styled-components';
 
 import doggoLogo from '../assets/doggoLogo.png';
 import searchIcon from '../assets/search-icon.svg';
+import { Link } from 'react-router-dom';
 
 
 export default function MenuLayout() {
 
   const HeaderContainer = styled.div`
-  background-color: #e87a43;
+  background-color: #fff;
   padding: 10px;
   border-bottom: 2px solid #000028;
   display: flex;
   justify-content: space-between;
   p {
     font-size: 16px;
-    font-family: 'Nova Flat';
-    color: #000028;
+    font-family: 'Batangas';
+    color: #fe502d;
   }
 `;
 
@@ -41,9 +42,7 @@ const OptionsHeader = styled.div`
   justify-content: space-between;
   button {
     margin: 5px 10px;
-    background-color: #fef7e1;
     border-radius: 8px;
-    border: 1px solid #000028;
     min-width: 10rem;
     font-weight: bold;
   }
@@ -75,9 +74,9 @@ const SearchHeader = styled.div`
         </MenuIcon>
         
         <OptionsHeader>
-          <button onClick={() => handlePageChange('pagina1')}>Home</button>
-          <button onClick={() => handlePageChange('pagina2')}>Statistic</button>
-          <button onClick={() => handlePageChange('pagina3')}>About</button>
+          <button><Link to="/">Home</Link></button>
+          <button><Link to="/statistic">Statistic</Link></button>
+          <button><Link to="/about">About</Link></button>
         </OptionsHeader>
         <SearchHeader>
           <div className='search-header-icon'>
@@ -90,10 +89,8 @@ const SearchHeader = styled.div`
       </HeaderContainer>
     </div>
   );
+
 }
 
-function handlePageChange(page) {
-  // Lógica para a mudança de página
-  console.log(`Navegando para ${page}`);
-}
+
 
