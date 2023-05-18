@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter, Heading, Stack, Box, Text, StackDivider } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Heading, Stack, Box, Text, StackDivider } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 export default function ProbabilidadeBinomial() {
 
+  const[k, setK] = useState(0);
+  const[n, setN] = useState(0);
+
+  function CalculateBinomial(e){
+    var elementK = document.getElementById('kValue');
+    var kValue = elementK.value;
+    var elementN = document.getElementById('nValue');
+    var nValue = elementN.value;
+    
+    
+  }
 
   return (
 
@@ -36,49 +42,54 @@ export default function ProbabilidadeBinomial() {
                 <p>Cada tentativa resulta apenas em duas possibilidades, que são sucesso e fracasso (a que se chama de tentativa de Bernoulli). Chama-se modelo <strong>DISCRETO</strong> pois trata-se de um estudo apenas com variáveis aleatórias discretas (que não aceitam casas decimais).</p>
               </Text>
             </Box>
-            <Box>
-              <Heading size='xs' textTransform='uppercase'>
-                Fórmula do modelo Binomial:
-              </Heading>
-              <Text pt='2' fontSize='sm'>
-                <p>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
-                <br />
-                <p>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
-                <br />
-                <label><strong>Legenda:</strong></label>
-                <br />
-                <strong>p</strong> = probabilidade de sucesso
-                <br />
-                <strong>1 - p</strong> = probabiliade de fracasso
-                <br />
-                <strong>k</strong> = valor desejado
-                <br />
-                <strong>n</strong> = valor total de eventos
-                
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div>
+                <Box>
+                  <Heading size='xs' textTransform='uppercase'>
+                    Fórmula do modelo Binomial:
+                  </Heading>
+                  <Text pt='2' fontSize='sm'>
+                    <p>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
+                    <br />
+                    <p>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
+                    <br />
+                    <label><strong>Legenda:</strong></label>
+                    <br />
+                    <strong>p</strong> = probabilidade de sucesso
+                    <br />
+                    <strong>1 - p</strong> = probabiliade de fracasso
+                    <br />
+                    <strong>k</strong> = valor desejado
+                    <br />
+                    <strong>n</strong> = valor total de eventos
 
-              </Text>
-            </Box>
-            {/* <Box>
-              <Heading size='xs' textTransform='uppercase'>
-                Analysis
-              </Heading>
-              <Text pt='2' fontSize='sm'>
-                See a detailed analysis of all your business clients.
-              </Text>
-            </Box> */}
+
+                  </Text>
+                </Box>
+              </div>
+              <div style={{margin: '0 auto'}}>
+                <div style={{marginBottom: '15px'}}>
+                  <label><strong>Valor de "k"</strong></label>
+                  <Input placeholder='Insira o valor de "k"' id='kValue' />
+                </div>
+                <div style={{marginBottom: '15px'}}>
+                  <label><strong>Valor de "n"</strong></label>
+                  <Input placeholder='Insira o valor de "n"' id='nValue' />
+                </div>
+                <div>
+                  <Button color='#fe502d' borderColor='#fe502d' variant='outline' onClick={CalculateBinomial}>Calcular</Button>
+                </div>
+              </div>
+              <div>
+                {/* Result Goes Here */}
+              </div>
+            </div>
+          
           </Stack>
         </CardBody>
       </Card>
 
-      {/* Input Fields */}
-      <label>Teste</label>
-      <NumberInput defaultValue={0} precision={0} step={1}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+      
     </div>
   )
 }
