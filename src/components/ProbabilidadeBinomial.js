@@ -3,19 +3,50 @@ import styled from 'styled-components';
 import { Card, CardHeader, CardBody, CardFooter, Heading, Stack, Box, Text, StackDivider } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { create, all } from 'mathjs'
 
 export default function ProbabilidadeBinomial() {
+
+  {/* "mathjs" library config */}
+  const config = {
+    epsilon: 1e-12,
+    matrix: 'Matrix',
+    number: 'number',
+    precision: 64,
+    predictable: false,
+    randomSeed: null
+  }
+  const math = create(all, config)
 
   const[k, setK] = useState(0);
   const[n, setN] = useState(0);
 
-  function CalculateBinomial(e){
+  function CalculateBinomial(cnk){
+    // var exponent = math.pow()
+    var calculateBinomialResult = cnk 
+  }
+
+  function CalculateCNK(nValue, kValue){
+
+    var kValueFactorial = math.factorial(kValue);
+    var nValueFactorial = math.factorial(nValue);
+    var subtractionFactorial = math.factorial(nValue - kValue)
+    var cnk = nValueFactorial / (kValueFactorial * subtractionFactorial);
+    console.log(cnk);
+
+    CalculateBinomial(cnk);
+
+  }
+
+  function GetBinomialValues(e){
     var elementK = document.getElementById('kValue');
     var kValue = elementK.value;
     var elementN = document.getElementById('nValue');
     var nValue = elementN.value;
     
+    CalculateCNK(nValue, kValue)
     
+
   }
 
   return (
@@ -77,7 +108,7 @@ export default function ProbabilidadeBinomial() {
                   <Input placeholder='Insira o valor de "n"' id='nValue' />
                 </div>
                 <div>
-                  <Button color='#fe502d' borderColor='#fe502d' variant='outline' onClick={CalculateBinomial}>Calcular</Button>
+                  <Button color='#fe502d' borderColor='#fe502d' variant='outline' onClick={GetBinomialValues}>Calcular</Button>
                 </div>
               </div>
               <div>
