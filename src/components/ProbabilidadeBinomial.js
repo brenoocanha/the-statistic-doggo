@@ -26,8 +26,8 @@ export default function ProbabilidadeBinomial() {
   const[success, setSuccess] = useState(0);
   const[fail, setFail] = useState(0);
 
-  function CalculateBinomial(cnk, succesValue, failValue, kValue, nValue){
-    var successExponent = math.pow(succesValue, kValue);
+  function CalculateBinomial(cnk, successValue, failValue, kValue, nValue){
+    var successExponent = math.pow(successValue, kValue);
     var failExponentSubtraction = nValue - kValue;
     var failExponent = math.pow(failValue, failExponentSubtraction);
     console.log(successExponent);
@@ -38,7 +38,7 @@ export default function ProbabilidadeBinomial() {
     console.log("O resultado final é igual a:", calculateBinomialResult);
   }
 
-  function CalculateCNK(nValue, kValue, succesValue, failValue){
+  function CalculateCNK(nValue, kValue, successValue, failValue){
 
     var kValueFactorial = math.factorial(kValue);
     var nValueFactorial = math.factorial(nValue);
@@ -46,7 +46,7 @@ export default function ProbabilidadeBinomial() {
     var cnk = nValueFactorial / (kValueFactorial * subtractionFactorial);
     // console.log(cnk);
 
-    CalculateBinomial(cnk, succesValue, failValue, kValue, nValue);
+    CalculateBinomial(cnk, successValue, failValue, kValue, nValue);
 
   }
 
@@ -147,9 +147,13 @@ export default function ProbabilidadeBinomial() {
                     Fórmula do modelo Binomial:
                   </Heading>
                   <Text pt='2' fontSize='sm'>
-                    <p>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
+                    <p style={{fontSize: '28px', border: '1px solid black', padding: '5px', borderRadius: '5px'}}>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
                     <br />
-                    <p>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
+                    <p style={{fontSize: '24px', border: '1px solid black', padding: '5px', borderRadius: '5px', width: '60%'}}>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <br />
                     <label><strong>Legenda:</strong></label>
                     <br />
