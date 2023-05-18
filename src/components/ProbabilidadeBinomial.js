@@ -5,12 +5,14 @@ import { Input } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { create, all } from 'mathjs';
 import { useToast } from '@chakra-ui/react';
+import { Divider, Center } from '@chakra-ui/react';
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 
 export default function ProbabilidadeBinomial() {
 
   const toast = useToast();
 
-  {/* "mathjs" library config */}
+  {/* "mathjs" library config */ }
   const config = {
     epsilon: 1e-12,
     matrix: 'Matrix',
@@ -21,12 +23,12 @@ export default function ProbabilidadeBinomial() {
   }
   const math = create(all, config)
 
-  const[k, setK] = useState(0);
-  const[n, setN] = useState(0);
-  const[success, setSuccess] = useState(0);
-  const[fail, setFail] = useState(0);
+  const [k, setK] = useState(0);
+  const [n, setN] = useState(0);
+  const [success, setSuccess] = useState(0);
+  const [fail, setFail] = useState(0);
 
-  function CalculateBinomial(cnk, successValue, failValue, kValue, nValue){
+  function CalculateBinomial(cnk, successValue, failValue, kValue, nValue) {
     var successExponent = math.pow(successValue, kValue);
     var failExponentSubtraction = nValue - kValue;
     var failExponent = math.pow(failValue, failExponentSubtraction);
@@ -38,7 +40,7 @@ export default function ProbabilidadeBinomial() {
     console.log("O resultado final é igual a:", calculateBinomialResult);
   }
 
-  function CalculateCNK(nValue, kValue, successValue, failValue){
+  function CalculateCNK(nValue, kValue, successValue, failValue) {
 
     var kValueFactorial = math.factorial(kValue);
     var nValueFactorial = math.factorial(nValue);
@@ -50,7 +52,7 @@ export default function ProbabilidadeBinomial() {
 
   }
 
-  function GetBinomialValues(){
+  function GetBinomialValues() {
 
     var elementK = document.getElementById('kValue');
     var kValue = elementK.value;
@@ -66,54 +68,54 @@ export default function ProbabilidadeBinomial() {
 
     console.log(kValue, nValue, successValue, failValue);
 
-    if (!kValue){
+    if (!kValue) {
       kErrorToast();
-    } else if (!nValue){
+    } else if (!nValue) {
       nErrorToast();
-    } else if (!successValue){
+    } else if (!successValue) {
       successErrorToast();
-    } else if (!failValue){
+    } else if (!failValue) {
       failErrorToast();
     } else {
       CalculateCNK(nValue, kValue, successValue, failValue);
     }
   }
 
-  function kErrorToast(){
+  function kErrorToast() {
     toast({
-          title: 'Preencha todos os campos.',
-          description: 'Insira o valor desejado no campo "k"',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        })
+      title: 'Preencha todos os campos.',
+      description: 'Insira o valor desejado no campo "k"',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
   }
-  function nErrorToast(){
+  function nErrorToast() {
     toast({
-          title: 'Preencha todos os campos.',
-          description: 'Insira o número de tentativas no campo "n"',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        })
+      title: 'Preencha todos os campos.',
+      description: 'Insira o número de tentativas no campo "n"',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
   }
-  function successErrorToast(){
+  function successErrorToast() {
     toast({
-          title: 'Preencha todos os campos.',
-          description: 'Insira a chance de sucesso no campo "p"',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        })
+      title: 'Preencha todos os campos.',
+      description: 'Insira a chance de sucesso no campo "p"',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
   }
-  function failErrorToast(){
+  function failErrorToast() {
     toast({
-          title: 'Preencha todos os campos.',
-          description: 'Insira a chance de falha no campo "(1 - p)"',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        })
+      title: 'Preencha todos os campos.',
+      description: 'Insira a chance de falha no campo "(1 - p)"',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
   }
 
   return (
@@ -147,9 +149,9 @@ export default function ProbabilidadeBinomial() {
                     Fórmula do modelo Binomial:
                   </Heading>
                   <Text pt='2' fontSize='sm'>
-                    <p style={{fontSize: '28px', border: '1px solid black', padding: '5px', borderRadius: '5px'}}>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
+                    <p style={{ fontSize: '28px', border: '1px solid black', padding: '5px', borderRadius: '5px' }}>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
                     <br />
-                    <p style={{fontSize: '24px', border: '1px solid black', padding: '5px', borderRadius: '5px', width: '60%'}}>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
+                    <p style={{ fontSize: '24px', border: '1px solid black', padding: '5px', borderRadius: '5px', width: '60%' }}>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
                     <br />
                     <br />
                     <br />
@@ -169,20 +171,20 @@ export default function ProbabilidadeBinomial() {
                   </Text>
                 </Box>
               </div>
-              <div style={{margin: '0 auto'}}>
-                <div style={{marginBottom: '15px'}}>
+              <div style={{ margin: '0 auto' }}>
+                <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "k"</strong></label>
                   <Input placeholder='Insira o valor desejado' id='kValue' />
                 </div>
-                <div style={{marginBottom: '15px'}}>
+                <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "n"</strong></label>
                   <Input placeholder='Insira o número de tentativas' id='nValue' />
                 </div>
-                <div style={{marginBottom: '15px'}}>
+                <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "p"</strong></label>
                   <Input placeholder='Insira a chance de sucesso' id='successValue' />
                 </div>
-                <div style={{marginBottom: '15px'}}>
+                <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "(1 - p)"</strong></label>
                   <Input placeholder='Insira a chance de falha' id='failValue' />
                 </div>
@@ -191,15 +193,25 @@ export default function ProbabilidadeBinomial() {
                 </div>
               </div>
               <div>
+                <Center height='100%'>
+                  <Divider orientation='vertical' />
+                </Center>
+              </div>
+              <div>
+                <Heading size='xs' textTransform='uppercase' style={{marginLeft: '15px'}}>
+                    Resultado:
+                </Heading>
+              </div>
+              <div>
                 {/* Result Goes Here */}
               </div>
             </div>
-          
+
           </Stack>
         </CardBody>
       </Card>
 
-      
+
     </div>
   )
 }
