@@ -6,13 +6,18 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 import { create, all } from 'mathjs';
 import { useToast } from '@chakra-ui/react';
 import { Divider, Center } from '@chakra-ui/react';
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 
 export default function ProbabilidadeBinomial() {
 
+  const[cnkFinalResult, setCnkFinalResult] = useState();
+  const[successFinalResult, setSuccessFinalResult] = useState();
+  const[failFinalResult, setFailFinalResult] = useState();
+  const[finalResult, setFinalResult] = useState();
+  const[percentageFinalResult, setPercentageFinalResult] = useState();
+
   const toast = useToast();
 
-  {/* "mathjs" library config */ }
+  /* "mathjs" library config */ 
   const config = {
     epsilon: 1e-12,
     matrix: 'Matrix',
@@ -23,21 +28,29 @@ export default function ProbabilidadeBinomial() {
   }
   const math = create(all, config)
 
-  const [k, setK] = useState(0);
-  const [n, setN] = useState(0);
-  const [success, setSuccess] = useState(0);
-  const [fail, setFail] = useState(0);
-
   function CalculateBinomial(cnk, successValue, failValue, kValue, nValue) {
     var successExponent = math.pow(successValue, kValue);
     var failExponentSubtraction = nValue - kValue;
     var failExponent = math.pow(failValue, failExponentSubtraction);
     console.log(successExponent);
     var calculateBinomialResult = cnk * successExponent * failExponent;
+    var decimalRedution = parseFloat(calculateBinomialResult.toPrecision(6))
+    var percentageResult = decimalRedution * 100 + "%"
+    
+    setCnkFinalResult(cnk);
     console.log("CNK é igual a", cnk);
+
+    setSuccessFinalResult(successExponent);
     console.log("P elevado a k é igual a", successExponent);
+
+    setFailFinalResult(failExponent);
     console.log("(1 - p) elevado a (n - k) é igual a:", failExponent);
+    
+    setFinalResult(calculateBinomialResult);
     console.log("O resultado final é igual a:", calculateBinomialResult);
+
+    setPercentageFinalResult(percentageResult);
+    console.log("O resultado em porcentagem é: ", percentageResult);
   }
 
   function CalculateCNK(nValue, kValue, successValue, failValue) {
@@ -198,12 +211,25 @@ export default function ProbabilidadeBinomial() {
                 </Center>
               </div>
               <div>
-                <Heading size='xs' textTransform='uppercase' style={{marginLeft: '15px'}}>
+                <Heading size='xs' textTransform='uppercase' style={{marginLeft: '30px'}}>
                     Resultado:
                 </Heading>
-              </div>
-              <div>
-                {/* Result Goes Here */}
+                <Card  style={{marginLeft: '30px', marginTop: '30px'}}>
+                  <CardBody>
+                    <Text>
+                        <p>O C<span style={{fontSize: '0.75em'}}>n,k</span> equivale a: <strong>{cnkFinalResult}</strong></p>
+                        <br />
+                        <p>A chance de sucesso (p) elevada ao número de tentativas (k) é igual a: <strong>{successFinalResult}</strong></p>
+                        <br />
+                        <p>A chance de fracasso (1 - p) elevada ao número de tentativas menos o valor desejado (n - k) é igual a: <strong>{failFinalResult}</strong></p>
+                        <br />
+                        <p>O resultado final é igual a: <strong>{finalResult}</strong></p>
+                        <br />
+                        <p>Em porcentagem: <strong>{percentageFinalResult}</strong></p>
+
+                    </Text>
+                  </CardBody>
+                </Card>
               </div>
             </div>
 

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/anatomy": "^2.1.2",
+    "@chakra-ui/progress": "^2.1.6",
     "@chakra-ui/react": "^2.6.1",
     "@chakra-ui/theme-tools": "^2.0.17",
     "@emotion/react": "^11.11.0",
