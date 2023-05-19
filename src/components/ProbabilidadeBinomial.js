@@ -72,8 +72,9 @@ export default function ProbabilidadeBinomial() {
     var elementSuccess = parseFloat(document.getElementById('successValue').value);
     var successValue = elementSuccess;
 
-    var elementFail = parseFloat(document.getElementById('failValue').value);
+    var elementFail = (1 - successValue);
     var failValue = elementFail;
+    console.log("Chance de fracasso: ", failValue);
 
     console.log(kValue, nValue, successValue, failValue);
 
@@ -83,8 +84,6 @@ export default function ProbabilidadeBinomial() {
       nErrorToast();
     } else if (!successValue) {
       successErrorToast();
-    } else if (!failValue) {
-      failErrorToast();
     } else {
       CalculateCNK(nValue, kValue, successValue, failValue);
     }
@@ -112,15 +111,6 @@ export default function ProbabilidadeBinomial() {
     toast({
       title: 'Preencha todos os campos.',
       description: 'Insira a chance de sucesso no campo "p"',
-      status: 'error',
-      duration: 9000,
-      isClosable: true,
-    })
-  }
-  function failErrorToast() {
-    toast({
-      title: 'Preencha todos os campos.',
-      description: 'Insira a chance de falha no campo "(1 - p)"',
       status: 'error',
       duration: 9000,
       isClosable: true,
@@ -190,12 +180,8 @@ export default function ProbabilidadeBinomial() {
                   <Input placeholder='Insira o número de tentativas' id='nValue' />
                 </div>
                 <div style={{ marginBottom: '15px' }}>
-                  <label><strong>Valor de "p"</strong></label>
+                  <label><strong>Chance de sucesso ("p")</strong></label>
                   <Input placeholder='Insira a chance de sucesso' id='successValue' />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                  <label><strong>Valor de "(1 - p)"</strong></label>
-                  <Input placeholder='Insira a chance de falha' id='failValue' />
                 </div>
                 <div>
                   <Button color='#fe502d' borderColor='#fe502d' variant='outline' onClick={GetBinomialValues}>Calcular</Button>
