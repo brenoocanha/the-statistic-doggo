@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import doggoLogo from '../assets/doggoLogo.png';
+import { Box } from '@chakra-ui/react'
 
 const HomeBackground = styled.div`
   background-color: white;
@@ -45,7 +46,7 @@ const CalculateButton = styled.button`
 
 function Home() {
   return (
-    <div>
+    <Box>
       <HomeBackground>
         <h1>Come<br />calculate with <br />The Doggo!</h1>
         <CalculateButton><Link to="/statistic">CALCULATE!</Link></CalculateButton>
@@ -53,7 +54,7 @@ function Home() {
       <HomeDoggoBackground>
         <img src={doggoLogo} style={{width: "400px", height: "400px"}} alt="doggoImage" />
       </HomeDoggoBackground>
-    </div>
+    </Box>
 )}
 
 export default Home;
