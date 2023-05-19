@@ -74,6 +74,11 @@ export default function ProbabilidadeBinomial() {
 
   function GetBinomialValues() {
 
+    function resetInputFields() {
+      elementK.value = "";
+      elementN.value = "";
+    }
+
     var elementK = document.getElementById('kValue');
     var kValue = parseFloat(elementK.value);
 
@@ -87,6 +92,8 @@ export default function ProbabilidadeBinomial() {
     var failValue = elementFail;
     console.log("Chance de fracasso: ", failValue);
 
+    resetInputFields();
+
     console.log(kValue, nValue, successValue, failValue);
 
     if (!kValue) {
@@ -98,6 +105,9 @@ export default function ProbabilidadeBinomial() {
     } else {
       CalculateCNK(nValue, kValue, successValue, failValue);
     }
+
+    resetInputFields();
+
   }
 
   function kErrorToast() {
@@ -127,6 +137,7 @@ export default function ProbabilidadeBinomial() {
       isClosable: true,
     })
   }
+
 
   return (
 
@@ -224,7 +235,7 @@ export default function ProbabilidadeBinomial() {
                       <p>(1 - p)<sup>(n - k)</sup> = <strong>{failFinalResult}</strong></p>
 
                       <br />
-                      <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> . p<sup>k</sup> . (1 - p)<sup>(n - k)</sup> <strong>&rarr;</strong> <strong>{cnkFinalResult + " " + point + " " + " " + successFinalResult + " " + point + " " + failFinalResult}</strong></p>
+                      <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> . p<sup>k</sup> . (1 - p)<sup>(n - k)</sup> <strong>&rarr;</strong> <strong>{cnkFinalResult + " " + point + " " + successFinalResult + " " + point + " " + failFinalResult}</strong></p>
                       <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> . p<sup>k</sup> . (1 - p)<sup>(n - k)</sup> = <strong>{finalResult}</strong></p>
                       <br />
                       <p>Percentual: <strong>{percentageFinalResult}</strong></p>
