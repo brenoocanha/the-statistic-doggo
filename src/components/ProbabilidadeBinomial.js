@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardBody, Heading, Stack, Box, Text, StackDivider, Button, Input, useToast, Divider, Center } from '@chakra-ui/react';
 import { create, all } from 'mathjs';
+import "../styles/ProbabilidadeBinomial.css";
 
 export default function ProbabilidadeBinomial() {
 
@@ -152,7 +153,7 @@ export default function ProbabilidadeBinomial() {
             </Box>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div>
-                <Box>
+                <Box className='fórmula-binomial'>
                   <Heading size='xs' textTransform='uppercase'>
                     Fórmula do modelo Binomial:
                   </Heading>
@@ -179,7 +180,7 @@ export default function ProbabilidadeBinomial() {
                   </Text>
                 </Box>
               </div>
-              <div style={{ margin: '0 auto' }}>
+              <div style={{ margin: '0 40px' }}>
                 <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "k"</strong></label>
                   <Input placeholder='Insira o valor desejado' id='kValue' />
