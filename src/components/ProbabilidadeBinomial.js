@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Card, CardHeader, CardBody, CardFooter, Heading, Stack, Box, Text, StackDivider } from '@chakra-ui/react';
-import { Input } from '@chakra-ui/react'
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Card, CardHeader, CardBody, Heading, Stack, Box, Text, StackDivider, Button, Input, useToast, Divider, Center } from '@chakra-ui/react';
 import { create, all } from 'mathjs';
-import { useToast } from '@chakra-ui/react';
-import { Divider, Center } from '@chakra-ui/react';
 
 export default function ProbabilidadeBinomial() {
 

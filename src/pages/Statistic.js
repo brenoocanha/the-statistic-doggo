@@ -1,15 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react'
 import ProbabilidadeBinomial from '../components/ProbabilidadeBinomial';
+import ProbabilidadePoisson from '../components/ProbabilidadePoisson';
 
 
 const StyledTabs = styled(Tabs)`
@@ -37,7 +30,7 @@ function Statistic() {
     <StyledTabs isFitted colorscheme='' size='lg'>
       <TabList mb='1em'>
         <StyledTab>Probabilidade Binomial</StyledTab>
-        <StyledTab>Two</StyledTab>
+        <StyledTab>Probabilidade Poisson</StyledTab>
         <StyledTab>Three</StyledTab>
       </TabList>
       <StyledTabPanels>
@@ -47,7 +40,7 @@ function Statistic() {
 
         </StyledTabPanel>
         <StyledTabPanel>
-          <p>two!</p>
+          <ProbabilidadePoisson />
         </StyledTabPanel>
         <StyledTabPanel>
           <p>three!</p>
