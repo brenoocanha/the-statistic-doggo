@@ -2,18 +2,27 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardBody, Heading, Stack, Box, Text, StackDivider, Button, Input, useToast, Divider, Center } from '@chakra-ui/react';
 import { create, all } from 'mathjs';
 import "../styles/ProbabilidadeBinomial.css";
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from '@chakra-ui/react'
 
 export default function ProbabilidadeBinomial() {
 
-  const[cnkFinalResult, setCnkFinalResult] = useState();
-  const[successFinalResult, setSuccessFinalResult] = useState();
-  const[failFinalResult, setFailFinalResult] = useState();
-  const[finalResult, setFinalResult] = useState();
-  const[percentageFinalResult, setPercentageFinalResult] = useState();
+  const [point, setPoint] = useState("");
+
+  const [cnkFinalResult, setCnkFinalResult] = useState("");
+  const [successFinalResult, setSuccessFinalResult] = useState("");
+  const [failFinalResult, setFailFinalResult] = useState("");
+  const [finalResult, setFinalResult] = useState("");
+  const [percentageFinalResult, setPercentageFinalResult] = useState("");
 
   const toast = useToast();
 
-  /* "mathjs" library config */ 
+  /* "mathjs" library config */
   const config = {
     epsilon: 1e-12,
     matrix: 'Matrix',
@@ -31,18 +40,20 @@ export default function ProbabilidadeBinomial() {
     console.log(successExponent);
     var calculateBinomialResult = cnk * successExponent * failExponent;
     var decimalRedution = parseFloat(calculateBinomialResult.toPrecision(6))
-    var percentageResult = decimalRedution * 100 + "%"
-    
-    setCnkFinalResult(cnk);
+    var percentageResult = decimalRedution * 100 + "%";
+
+    setPoint("x");
+
+    setCnkFinalResult(cnk.toFixed(2));
     console.log("CNK é igual a", cnk);
 
-    setSuccessFinalResult(successExponent);
+    setSuccessFinalResult(successExponent.toFixed(4));
     console.log("P elevado a k é igual a", successExponent);
 
-    setFailFinalResult(failExponent);
+    setFailFinalResult(failExponent.toFixed(4));
     console.log("(1 - p) elevado a (n - k) é igual a:", failExponent);
-    
-    setFinalResult(calculateBinomialResult);
+
+    setFinalResult(calculateBinomialResult.toFixed(4));
     console.log("O resultado final é igual a:", calculateBinomialResult);
 
     setPercentageFinalResult(percentageResult);
@@ -55,7 +66,7 @@ export default function ProbabilidadeBinomial() {
     var nValueFactorial = math.factorial(nValue);
     var subtractionFactorial = math.factorial(nValue - kValue)
     var cnk = nValueFactorial / (kValueFactorial * subtractionFactorial);
-    // console.log(cnk);
+
 
     CalculateBinomial(cnk, successValue, failValue, kValue, nValue);
 
@@ -63,8 +74,13 @@ export default function ProbabilidadeBinomial() {
 
   function GetBinomialValues() {
 
+    function resetInputFields() {
+      elementK.value = "";
+      elementN.value = "";
+    }
+
     var elementK = document.getElementById('kValue');
-    var kValue = elementK.value;
+    var kValue = parseFloat(elementK.value);
 
     var elementN = document.getElementById('nValue');
     var nValue = elementN.value;
@@ -75,6 +91,8 @@ export default function ProbabilidadeBinomial() {
     var elementFail = (1 - successValue);
     var failValue = elementFail;
     console.log("Chance de fracasso: ", failValue);
+
+    resetInputFields();
 
     console.log(kValue, nValue, successValue, failValue);
 
@@ -87,6 +105,9 @@ export default function ProbabilidadeBinomial() {
     } else {
       CalculateCNK(nValue, kValue, successValue, failValue);
     }
+
+    resetInputFields();
+
   }
 
   function kErrorToast() {
@@ -117,6 +138,7 @@ export default function ProbabilidadeBinomial() {
     })
   }
 
+
   return (
 
     <div>
@@ -141,18 +163,16 @@ export default function ProbabilidadeBinomial() {
                 <p>Cada tentativa resulta apenas em duas possibilidades, que são sucesso e fracasso (a que se chama de tentativa de Bernoulli). Chama-se modelo <strong>DISCRETO</strong> pois trata-se de um estudo apenas com variáveis aleatórias discretas (que não aceitam casas decimais).</p>
               </Text>
             </Box>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className='formula-container' style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div>
                 <Box className='fórmula-binomial'>
                   <Heading size='xs' textTransform='uppercase'>
                     Fórmula do modelo Binomial:
                   </Heading>
                   <Text pt='2' fontSize='sm'>
-                    <p style={{ fontSize: '28px', border: '1px solid black', padding: '5px', borderRadius: '5px' }}>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
+                    <p style={{ fontSize: '1rem', border: '1px solid black', padding: '5px', borderRadius: '5px', whiteSpace: 'nowrap' }}>𝑷 𝑿 = 𝑲 = 𝑪𝒏,𝒌. 𝒑 𝒌 . 𝟏 − 𝒑 𝒏−𝒌</p>
                     <br />
-                    <p style={{ fontSize: '24px', border: '1px solid black', padding: '5px', borderRadius: '5px', width: '60%' }}>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
-                    <br />
-                    <br />
+                    <p style={{ fontSize: '1rem', border: '1px solid black', padding: '5px', borderRadius: '5px', whiteSpace: 'nowrap', width: 'auto' }}>𝑪𝒏,𝒌 = 𝒏! / 𝒌! 𝒏 − 𝒌 !</p>
                     <br />
                     <br />
                     <br />
@@ -170,7 +190,7 @@ export default function ProbabilidadeBinomial() {
                   </Text>
                 </Box>
               </div>
-              <div style={{ margin: '0 40px' }}>
+              <div className='valores-input' style={{ margin: '0 40px' }}>
                 <div style={{ marginBottom: '15px' }}>
                   <label><strong>Valor de "k"</strong></label>
                   <Input placeholder='Insira o valor desejado' id='kValue' />
@@ -180,8 +200,14 @@ export default function ProbabilidadeBinomial() {
                   <Input placeholder='Insira o número de tentativas' id='nValue' />
                 </div>
                 <div style={{ marginBottom: '15px' }}>
-                  <label><strong>Chance de sucesso ("p")</strong></label>
-                  <Input placeholder='Insira a chance de sucesso' id='successValue' />
+                  <label><strong>Chance de sucesso ("p") <span style={{ color: 'gray' }}>[DECIMAL]</span></strong></label>
+                  <NumberInput defaultValue={0} precision={2} step={0.01} min={0} max={1} id='successValue'>
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
                 </div>
                 <div>
                   <Button color='#fe502d' borderColor='#fe502d' variant='outline' onClick={GetBinomialValues}>Calcular</Button>
@@ -192,22 +218,27 @@ export default function ProbabilidadeBinomial() {
                   <Divider orientation='vertical' />
                 </Center>
               </div>
-              <div>
-                <Heading size='xs' textTransform='uppercase' style={{marginLeft: '30px'}}>
-                    Resultado:
-                </Heading>
-                <Card  style={{marginLeft: '30px', marginTop: '30px'}}>
+              <div style={{ marginLeft: '30px', marginTop: '10px' }} className='result-wrapper'>
+                <Card>
                   <CardBody>
+                    <Heading size='xs' textTransform='uppercase' style={{marginBottom: '10px'}}>
+                      Resultado:
+                    </Heading>
                     <Text>
-                        <p>O C<span style={{fontSize: '0.75em'}}>n,k</span> equivale a: <strong>{cnkFinalResult}</strong></p>
-                        <br />
-                        <p>A chance de sucesso (p) elevada ao número de tentativas (k) é igual a: <strong>{successFinalResult}</strong></p>
-                        <br />
-                        <p>A chance de fracasso (1 - p) elevada ao número de tentativas menos o valor desejado (n - k) é igual a: <strong>{failFinalResult}</strong></p>
-                        <br />
-                        <p>O resultado final é igual a: <strong>{finalResult}</strong></p>
-                        <br />
-                        <p>Em porcentagem: <strong>{percentageFinalResult}</strong></p>
+
+                      
+
+                      <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> = <strong>{cnkFinalResult}</strong></p>
+
+                      <p>p<sup>k</sup> = <strong>{successFinalResult}</strong></p>
+                      
+                      <p>(1 - p)<sup>(n - k)</sup> = <strong>{failFinalResult}</strong></p>
+
+                      <br />
+                      <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> . p<sup>k</sup> . (1 - p)<sup>(n - k)</sup> <strong>&rarr;</strong> <strong>{cnkFinalResult + " " + point + " " + successFinalResult + " " + point + " " + failFinalResult}</strong></p>
+                      <p>C<span style={{ fontSize: '0.75em' }}>n,k</span> . p<sup>k</sup> . (1 - p)<sup>(n - k)</sup> = <strong>{finalResult}</strong></p>
+                      <br />
+                      <p>Percentual: <strong>{percentageFinalResult}</strong></p>
 
                     </Text>
                   </CardBody>
