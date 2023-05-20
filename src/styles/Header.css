@@ -1,0 +1,26 @@
+#menu-mobile-button {
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .header-wrapper-mobile {
+    width: 100%;
+  }
+
+  .header-container-mobile {
+    margin: auto;
+  }
+
+  .mobile-page-button {
+    border-radius: 10px !important;
+    margin: 20px 50px !important
+  }
+
+  #menu-mobile-button {
+    visibility: visible;
+    margin: auto 0;
+    background-color: #01002b;
+  }
+
+}
+

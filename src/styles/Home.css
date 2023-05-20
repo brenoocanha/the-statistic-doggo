@@ -1,0 +1,80 @@
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 1024px) {
+
+  .home-text {
+    margin: auto;
+  }
+
+  .calculate-button {
+    scale: 0.9;
+  }
+
+  .pula-linha {
+    display: none;
+  }
+
+}
+
+.button-text-wrapper {
+  margin: auto;
+}
+
+.home-text {
+  font-family: 'DM Sans';
+  font-size: 3rem;
+  text-align: center;
+  margin: 0 !important;
+}
+
+.calculate-button {
+  scale: 0.8;
+}
+
+.doggo-image {
+  margin: auto
+}
+
+.home-text-mobile {
+  height: auto;
+}
+
+.home-title-mobile {
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-align: center;
+  padding-top: 15%;
+  margin: auto;
+  font-family: 'DM Sans';
+  font-size: 25px;
+}
+
+.mobile-home-background {
+  background-color: #fe502d;
+}
+
+.second-section-mobile {
+  background-color: #fff;
+  height: calc(100vh - 231px);
+}
+
+.calculate-button-mobile {
+  display: flex;
+  justify-content: center;
+  font-family: 'DM Sans';
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: auto;
+  width: 309px;
+  margin-top: 15px;
+  height: 3rem;
+  text-align: center;
+}
+
+.calculate-link-mobile {
+  margin: auto;
+  font-size: 1.5rem
+}
