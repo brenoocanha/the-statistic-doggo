@@ -1,0 +1,52 @@
+@media (max-width: 1024px) {
+
+  .home-text {
+    /* scale: 1; */
+    margin: 25% 0 !important;
+  }
+
+  .calculate-button {
+    scale: 0.9;
+  }
+
+  .pula-linha {
+    display: none;
+  }
+
+}
+
+.button-text-wrapper {
+  margin: auto 0;
+}
+
+.home-text {
+  font-family: 'DM Sans';
+  font-size: 64px;
+  text-align: center;
+  margin: 0 !important;
+}
+
+.calculate-button {
+  scale: 0.8;
+}
+
+.home-text-mobile {
+  height: auto;
+}
+
+.home-title-mobile {
+  color: white;
+  text-align: center;
+  padding-top: 25%;
+  font-family: 'DM Sans';
+  font-size: 25px;
+}
+
+.mobile-home-background {
+  background-color: #fe502d;
+}
+
+.second-section-mobile {
+  background-color: #260c07;
+  height: calc(100vh - 231px);
+}
