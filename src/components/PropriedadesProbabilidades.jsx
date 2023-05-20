@@ -117,7 +117,11 @@ export default function PropriedadesProbabilidades() {
                 <p><b>Espaço amostral 𝝮</b> = {"{cc; ck; kc; kk}"}</p>
                 <br />
               </Text>
-              <Image src="../assets/doggoLogo.png" />
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Image src="https://raw.githubusercontent.com/brenoocanha/images-bucket/main/arvoreProbabilidadesPNG.png" style={{border: '1px solid black', borderRadius: '5px'}} />
+              </div>
+              <br />
+              
             </Box>
           </Stack>
         </CardBody>
