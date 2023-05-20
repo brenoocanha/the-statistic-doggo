@@ -6,12 +6,15 @@ import { Box } from "@chakra-ui/react";
 import "../styles/Home.css";
 
 import { Text } from "@chakra-ui/react";
+
 const HomeBackground = styled.div`
   background-color: white;
   height: calc(100vh);
   width: 55%;
   float: left;
   margin: auto;
+  display: flex;
+  justify-content: center;
   h1 {
     font-size: 4.75rem;
     font-family: "DM Sans";
@@ -28,11 +31,15 @@ const HomeDoggoBackground = styled.div`
   height: calc(100vh);
   float: right;
   margin: auto;
+  display: flex;
+  justify-content: center;
   img {
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 28%;
+
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -69,7 +76,12 @@ function Home() {
           />
         </div>
         <div className="second-section-mobile">
-          <h1 className="home-title-mobile">Olá</h1>
+          <h1 className="home-title-mobile">
+            Come <br /> calculate with The Doggo!
+          </h1>
+          <div className="calculate-button-mobile">
+            <Link className="calculate-link-mobile" to="/statistic">CALCULATE!</Link>
+          </div>
         </div>
       </Box>
     );
@@ -77,7 +89,7 @@ function Home() {
     return (
       <Box>
         <HomeBackground>
-          <Box>
+          <Box className="button-text-wrapper">
             <Text className="home-text">
               Come
               <br className="pula-linha" />{" "}
@@ -89,11 +101,11 @@ function Home() {
             </CalculateButton>
           </Box>
         </HomeBackground>
-        <HomeDoggoBackground>
+        <HomeDoggoBackground className="doggo-container">
           <Box className="doggo-image">
             <img
               src={doggoLogo}
-              style={{ width: "400px", height: "400px" }}
+              style={{ width: "50%", height: "50%" }}
               alt="doggoImage"
             />
           </Box>
