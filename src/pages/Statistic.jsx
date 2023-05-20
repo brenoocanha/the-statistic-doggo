@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import ProbabilidadeBinomial from '../components/ProbabilidadeBinomial';
 import ProbabilidadePoisson from '../components/ProbabilidadePoisson';
+import '../styles/Statistic.css';
 
 
 const StyledTabs = styled(Tabs)`
@@ -28,10 +29,10 @@ function Statistic() {
 
   return (
     <StyledTabs isFitted colorscheme='' size='lg'>
-      <TabList mb='1em'>
-        <StyledTab>Probabilidade Binomial</StyledTab>
-        <StyledTab>Probabilidade Poisson</StyledTab>
-        <StyledTab>Three</StyledTab>
+      <TabList mb='1em' className='statistic-tablist'>
+        <StyledTab className='tab-item'>Probabilidade Binomial</StyledTab>
+        <StyledTab className='tab-item'>Probabilidade Poisson</StyledTab>
+        <StyledTab className='tab-item'>Three</StyledTab>
       </TabList>
       <StyledTabPanels>
         <StyledTabPanel>
