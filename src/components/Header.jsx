@@ -27,7 +27,6 @@ export default function MenuLayout() {
   const btnRef = React.useRef();
 
   const larguraMonitor = window.innerWidth;
-  console.log(larguraMonitor);
 
   const HeaderContainer = styled.div`
     background-color: #fff;
