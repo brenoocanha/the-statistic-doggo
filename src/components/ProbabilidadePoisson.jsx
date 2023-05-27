@@ -41,10 +41,15 @@ export default function ProbabilidadePoisson() {
   const euler = math.e;
 
   const [resultado, setResultado] = useState(0);
+  const [inputOcorrencias, setInputOcorrencias] = useState("");
+  const [inputValorDesejado, setInputValorDesejado] = useState("");
 
   function calcularPoisson() {
 
-    
+    function resetInputFields() {
+      document.getElementById('valor-media-poisson').value = "";
+      document.getElementById('valor-desejado-poisson').value = "";
+    }
 
     var valorOcorrencias = parseInt(
       document.getElementById("valor-media-poisson").value
@@ -65,7 +70,13 @@ export default function ProbabilidadePoisson() {
       var resultado = ((math.pow(euler, (valorOcorrencias * -1)) * (math.pow(valorOcorrencias, valorDesejado))) / math.factorial(valorDesejado)).toPrecision(4) * 100 + "%";
       
       setResultado(resultado);
+
+      
+
     }
+
+    resetInputFields();
+
   }
 
   function mediaErrorToast() {
@@ -192,6 +203,7 @@ export default function ProbabilidadePoisson() {
                   <Input
                     id="valor-media-poisson"
                     placeholder="Insira o número de ocorrências"
+                    defaultValue={inputOcorrencias}
                   ></Input>
                 </div>
                 <div>
@@ -201,6 +213,7 @@ export default function ProbabilidadePoisson() {
                   <Input
                     id="valor-desejado-poisson"
                     placeholder="Insira o valor desejado"
+                    defaultValue={inputValorDesejado}
                   ></Input>
                 </div>
                 <div
