@@ -1,0 +1,12 @@
+@media(max-width: 768px){
+  .statistic-tablist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab-item {
+    margin-bottom: 10px;
+  }
+
+}
