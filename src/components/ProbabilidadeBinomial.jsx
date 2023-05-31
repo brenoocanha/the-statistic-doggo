@@ -83,7 +83,7 @@ export default function ProbabilidadeBinomial() {
     var kValue = parseFloat(elementK.value);
 
     var elementN = document.getElementById('nValue');
-    var nValue = elementN.value;
+    var nValue = parseFloat(elementN.value);
 
     var elementSuccess = parseFloat(document.getElementById('successValue').value);
     var successValue = elementSuccess;
@@ -96,7 +96,11 @@ export default function ProbabilidadeBinomial() {
 
     console.log(kValue, nValue, successValue, failValue);
 
-    if (!kValue) {
+    if (kValue < 0 || nValue < 0 || successValue < 0) {
+      negativeErrorToast();
+    } else if (kValue > nValue) {
+      invalidErrorToast();
+    } else if (!kValue) {
       kErrorToast();
     } else if (!nValue) {
       nErrorToast();
@@ -132,6 +136,24 @@ export default function ProbabilidadeBinomial() {
     toast({
       title: 'Preencha todos os campos.',
       description: 'Insira a chance de sucesso no campo "p"',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
+  }
+  function negativeErrorToast() {
+    toast({
+      title: 'Os números não podem ser negativos',
+      description: 'Insira apenas número iguais ou maiores do que 0',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
+  }
+  function invalidErrorToast() {
+    toast({
+      title: 'O cálculo é inválido',
+      description: '"k" não pode ser maior do que "n"',
       status: 'error',
       duration: 9000,
       isClosable: true,

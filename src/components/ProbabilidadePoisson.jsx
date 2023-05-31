@@ -14,7 +14,7 @@ import {
   Divider,
   Center,
 } from "@chakra-ui/react";
-import { create, all, isNull } from "mathjs";
+import { create, all, isNull, isNegative } from "mathjs";
 import "../styles/ProbabilidadeBinomial.css";
 import {
   NumberInput,
@@ -59,19 +59,17 @@ export default function ProbabilidadePoisson() {
       document.getElementById("valor-desejado-poisson").value
     );
 
-    
-
-    if (!valorOcorrencias) {
+    if(valorOcorrencias < 0 || valorDesejado < 0) {
+      negativeErrorToast();
+    } else if (!valorOcorrencias) {
       mediaErrorToast();
-    } else if (!valorDesejado) {
+    } else if (!valorDesejado && valorDesejado !== 0) {
       kErrorToast();
     } else {
 
       var resultado = ((math.pow(euler, (valorOcorrencias * -1)) * (math.pow(valorOcorrencias, valorDesejado))) / math.factorial(valorDesejado)).toPrecision(4) * 100 + "%";
       
       setResultado(resultado);
-
-      
 
     }
 
@@ -93,6 +91,16 @@ export default function ProbabilidadePoisson() {
     toast({
       title: "Preencha todos os campos.",
       description: "Insira um número válido de ocorrências no campo k",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  function negativeErrorToast() {
+    toast({
+      title: "Preencha todos os campos.",
+      description: "Os valores devem ser positivos",
       status: "error",
       duration: 9000,
       isClosable: true,
