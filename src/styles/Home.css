@@ -18,6 +18,10 @@
 
 }
 
+.doggo-container {
+  height: calc(100vh - 72px);
+}
+
 .button-text-wrapper {
   margin: auto;
 }
