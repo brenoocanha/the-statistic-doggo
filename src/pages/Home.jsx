@@ -9,12 +9,14 @@ import { Text } from "@chakra-ui/react";
 
 const HomeBackground = styled.div`
   background-color: white;
-  height: calc(100vh);
+  height: calc(100vh - 72px);
   width: 55%;
   float: left;
   margin: auto;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+
   h1 {
     font-size: 4.75rem;
     font-family: "DM Sans";
@@ -26,13 +28,13 @@ const HomeBackground = styled.div`
 `;
 const HomeDoggoBackground = styled.div`
   background-color: #fe502d;
-  height: calc(100vh);
   width: 45%;
-  height: calc(100vh);
+  height: calc(100vh - 72px);
   float: right;
   margin: auto;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   img {
     display: flex;
     justify-content: center;
